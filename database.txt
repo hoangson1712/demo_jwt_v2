@@ -1,0 +1,22 @@
+CREATE DATABASE demojwt;
+USE demojwt;
+
+CREATE TABLE roles(
+	role_id int auto_increment,
+	role_name varchar(30),
+	role_desc varchar(30),
+	PRIMARY KEY (role_id)
+);
+
+CREATE TABLE users(
+	user_id int auto_increment,
+	email varchar(255) unique,
+	password varchar(255),
+	full_name varchar(255),
+	role_id int,
+	PRIMARY KEY (user_id)
+);
+
+ALTER TABLE users
+ADD CONSTRAINT FK_roleId_users
+FOREIGN KEY (role_id) REFERENCES roles(role_id);
